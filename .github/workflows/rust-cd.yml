@@ -1,0 +1,18 @@
+name: Rust CD
+
+on:
+  push:
+    tags:
+      - "*.*.*"
+
+jobs:
+  publish-binary:
+    strategy:
+      fail-fast: false
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Releasing assets
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
